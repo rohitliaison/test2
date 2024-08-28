@@ -1,9 +1,14 @@
 import React, { useEffect, useState } from "react";
-import DataCard, { DataCardProps } from "./components/DataCard";
+import DataCard from "./components/DataCard";
 import MetaData, { MetaDataProps } from "./components/MetaData";
 
+interface Data {
+  [key: string]: {
+    [key: string]: any;
+  };
+}
 const App: React.FC = () => {
-  const [data, setData] = useState({});
+  const [data, setData] = useState<Data>({});
   const [loading, setLoading] = useState<boolean>(true);
   const [error, setError] = useState<string | null>(null);
 
@@ -39,11 +44,9 @@ const App: React.FC = () => {
       }
       <h2 className="text-xl font-bold mb-2">{Object.keys(data)[1]}</h2>
       <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-4 mt-4">
-        {Object.entries(data[Object.keys(data)[1]] as DataCardProps).map(
-          ([time, values]: [string, DataCardProps["data"]]) => (
-            <DataCard key={time} time={time} data={values} />
-          )
-        )}
+        {Object.entries(data[Object.keys(data)[1]]).map(([time, values]) => (
+          <DataCard key={time} time={time} data={values} />
+        ))}
       </div>
     </div>
   ) : (

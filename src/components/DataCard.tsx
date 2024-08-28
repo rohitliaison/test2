@@ -17,7 +17,7 @@ const DataCard: React.FC<DataCardProps> = ({ time, data }): ReactElement => {
     <div className="bg-white rounded-lg shadow p-4">
       <h3 className="font-bold mb-2">{time}</h3>
       <div className="text-sm text-gray-700">
-        {Object.entries(data).map(([key, value]: [string, string]) => (
+        {Object.entries(data).map(([key, value]) => (
           <p key={key}>
             <strong>{formatKey(key)}:</strong> {value}
           </p>
