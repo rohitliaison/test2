@@ -36,7 +36,7 @@ const App: React.FC = () => {
       "6. Time Zone": "",
     },
     "Time Series (5min)": {
-      "2024-08-27 19:55:00": {
+      timestamp: {
         "1. open": "",
         "2. high": "",
         "3. low": "",
@@ -72,12 +72,10 @@ const App: React.FC = () => {
 
   return Object.keys(data)?.length ? (
     <div className="p-4">
-      {
-        <DataCard
-          heading={Object.keys(data)[0]}
-          data={Object.values(data)[0] as MetaData}
-        />
-      }
+      <DataCard
+        heading={Object.keys(data)[0]}
+        data={Object.values(data)[0] as MetaData}
+      />
       <h2 className="text-xl font-bold mb-2">{Object.keys(data)[1]}</h2>
       <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-4 mt-4">
         {Object.entries(data[Object.keys(data)[1] as keyof ApiResponse]).map(
